@@ -36,9 +36,9 @@ jobs:
         CONTENT=$(cat "$FILE_PATH" | tr -d '\n\r' | xargs)
         
         if [ "$CONTENT" = "PASS" ]; then
-          RESULT='{"version":1,"status":"pass","max_score":'$MAX_SCORE',"tests":[{"name":"'$TEST_NAME'","status":"pass","score":'$MAX_SCORE',"message":"✓ Perfect! File contains the expected content."}]}'
+          RESULT='{"version":1,"status":"pass","max_score":'$MAX_SCORE',"tests":[{"name":"'$TEST_NAME'","status":"pass","score":'$MAX_SCORE',"message":"Perfect! File contains the expected content."}]}'
         else
-          RESULT='{"version":1,"status":"fail","max_score":'$MAX_SCORE',"tests":[{"name":"'$TEST_NAME'","status":"fail","score":0,"message":"✗ Expected PASS but got: '$CONTENT'"}]}'
+          RESULT='{"version":1,"status":"fail","max_score":'$MAX_SCORE',"tests":[{"name":"'$TEST_NAME'","status":"fail","score":0,"message":"Expected PASS but got: '$CONTENT'"}]}'
         fi
         
         echo "result=$RESULT" >> $GITHUB_OUTPUT
@@ -90,14 +90,14 @@ jobs:
                             "name": f"{question}",
                             "status": "pass",
                             "score": points_per_question,
-                            "message": f"✓ Correct answer: {expected}"
+                            "message": f"Correct answer: {expected}"
                         })
                     else:
                         tests.append({
                             "name": f"{question}",
                             "status": "fail",
                             "score": 0,
-                            "message": f"✗ Incorrect or missing (expected: {expected})"
+                            "message": f"Incorrect or missing (expected: {expected})"
                         })
                 
                 status = "pass" if score == max_score else "fail"
@@ -166,39 +166,39 @@ jobs:
                     if hasattr(calculator, 'add'):
                         if calculator.add(2, 3) == 5 and calculator.add(-1, 1) == 0:
                             score += points_per_function
-                            tests.append({"name": "add()", "status": "pass", "score": points_per_function, "message": "✓ Works correctly"})
+                            tests.append({"name": "add()", "status": "pass", "score": points_per_function, "message": "Works correctly"})
                         else:
-                            tests.append({"name": "add()", "status": "fail", "score": 0, "message": "✗ Incorrect results"})
+                            tests.append({"name": "add()", "status": "fail", "score": 0, "message": "Incorrect results"})
                     else:
-                        tests.append({"name": "add()", "status": "fail", "score": 0, "message": "✗ Not found"})
+                        tests.append({"name": "add()", "status": "fail", "score": 0, "message": "Not found"})
                 except Exception as e:
-                    tests.append({"name": "add()", "status": "error", "score": 0, "message": f"✗ Error: {str(e)}"})
+                    tests.append({"name": "add()", "status": "error", "score": 0, "message": f"Error: {str(e)}"})
                 
                 # Test subtract
                 try:
                     if hasattr(calculator, 'subtract'):
                         if calculator.subtract(5, 3) == 2 and calculator.subtract(0, 5) == -5:
                             score += points_per_function
-                            tests.append({"name": "subtract()", "status": "pass", "score": points_per_function, "message": "✓ Works correctly"})
+                            tests.append({"name": "subtract()", "status": "pass", "score": points_per_function, "message": "Works correctly"})
                         else:
-                            tests.append({"name": "subtract()", "status": "fail", "score": 0, "message": "✗ Incorrect results"})
+                            tests.append({"name": "subtract()", "status": "fail", "score": 0, "message": "Incorrect results"})
                     else:
-                        tests.append({"name": "subtract()", "status": "fail", "score": 0, "message": "✗ Not found"})
+                        tests.append({"name": "subtract()", "status": "fail", "score": 0, "message": "Not found"})
                 except Exception as e:
-                    tests.append({"name": "subtract()", "status": "error", "score": 0, "message": f"✗ Error: {str(e)}"})
+                    tests.append({"name": "subtract()", "status": "error", "score": 0, "message": f"Error: {str(e)}"})
                 
                 # Test multiply
                 try:
                     if hasattr(calculator, 'multiply'):
                         if calculator.multiply(3, 4) == 12 and calculator.multiply(-2, 5) == -10:
                             score += points_per_function
-                            tests.append({"name": "multiply()", "status": "pass", "score": points_per_function, "message": "✓ Works correctly"})
+                            tests.append({"name": "multiply()", "status": "pass", "score": points_per_function, "message": "Works correctly"})
                         else:
-                            tests.append({"name": "multiply()", "status": "fail", "score": 0, "message": "✗ Incorrect results"})
+                            tests.append({"name": "multiply()", "status": "fail", "score": 0, "message": "Incorrect results"})
                     else:
-                        tests.append({"name": "multiply()", "status": "fail", "score": 0, "message": "✗ Not found"})
+                        tests.append({"name": "multiply()", "status": "fail", "score": 0, "message": "Not found"})
                 except Exception as e:
-                    tests.append({"name": "multiply()", "status": "error", "score": 0, "message": f"✗ Error: {str(e)}"})
+                    tests.append({"name": "multiply()", "status": "error", "score": 0, "message": f"Error: {str(e)}"})
                 
                 status = "pass" if score == max_score else ("error" if any(t["status"] == "error" for t in tests) else "fail")
                 result = {"version": 1, "status": status, "max_score": max_score, "tests": tests}
@@ -232,9 +232,9 @@ jobs:
         CONTENT=$(cat "$FILE_PATH" | tr -d '\n\r' | xargs)
         
         if [ "$CONTENT" = "QUICK" ]; then
-          RESULT='{"version":1,"status":"pass","max_score":'$MAX_SCORE',"tests":[{"name":"'$TEST_NAME'","status":"pass","score":'$MAX_SCORE',"message":"✓ Quick test passed!","execution_time":"0.1s"}]}'
+          RESULT='{"version":1,"status":"pass","max_score":'$MAX_SCORE',"tests":[{"name":"'$TEST_NAME'","status":"pass","score":'$MAX_SCORE',"message":"Quick test passed!","execution_time":"0.1s"}]}'
         else
-          RESULT='{"version":1,"status":"fail","max_score":'$MAX_SCORE',"tests":[{"name":"'$TEST_NAME'","status":"fail","score":0,"message":"✗ Expected QUICK but got: '$CONTENT'"}]}'
+          RESULT='{"version":1,"status":"fail","max_score":'$MAX_SCORE',"tests":[{"name":"'$TEST_NAME'","status":"fail","score":0,"message":"Expected QUICK but got: '$CONTENT'"}]}'
         fi
         
         echo "result=$RESULT" >> $GITHUB_OUTPUT
@@ -269,14 +269,14 @@ jobs:
                             "version": 1,
                             "status": "pass",
                             "max_score": max_score,
-                            "tests": [{"name": test_name, "status": "pass", "score": max_score, "message": "✓ Valid JSON with correct status"}]
+                            "tests": [{"name": test_name, "status": "pass", "score": max_score, "message": "Valid JSON with correct status"}]
                         }
                     else:
                         result = {
                             "version": 1,
                             "status": "fail",
                             "max_score": max_score,
-                            "tests": [{"name": test_name, "status": "fail", "score": 0, "message": "✗ Missing or incorrect 'status' field"}]
+                            "tests": [{"name": test_name, "status": "fail", "score": 0, "message": "Missing or incorrect status field"}]
                         }
                 
                 except json.JSONDecodeError as e:
@@ -284,7 +284,7 @@ jobs:
                         "version": 1,
                         "status": "error",
                         "max_score": max_score,
-                        "tests": [{"name": test_name, "status": "error", "score": 0, "message": f"✗ Invalid JSON: {str(e)}"}]
+                        "tests": [{"name": test_name, "status": "error", "score": 0, "message": f"Invalid JSON: {str(e)}"}]
                     }
         
         except Exception as e:
@@ -332,11 +332,11 @@ jobs:
                     name_line = [line for line in content.split('\n') if line.startswith("NAME:")][0]
                     if len(name_line.split("NAME:")[1].strip()) > 0:
                         score += points_per_criterion
-                        tests.append({"name": "NAME Present", "status": "pass", "score": points_per_criterion, "message": f"✓ NAME found ({points_per_criterion} pts)"})
+                        tests.append({"name": "NAME Present", "status": "pass", "score": points_per_criterion, "message": f"NAME found ({points_per_criterion} pts)"})
                     else:
-                        tests.append({"name": "NAME Present", "status": "fail", "score": 0, "message": "✗ NAME empty (0 pts)"})
+                        tests.append({"name": "NAME Present", "status": "fail", "score": 0, "message": "NAME empty (0 pts)"})
                 else:
-                    tests.append({"name": "NAME Present", "status": "fail", "score": 0, "message": "✗ NAME not found (0 pts)"})
+                    tests.append({"name": "NAME Present", "status": "fail", "score": 0, "message": "NAME not found (0 pts)"})
                 
                 # CODE criterion
                 if "CODE:" in content:
@@ -345,13 +345,13 @@ jobs:
                     
                     if len(code_content) >= 10:
                         score += points_per_criterion
-                        tests.append({"name": "CODE Section", "status": "pass", "score": points_per_criterion, "message": f"✓ CODE has content ({points_per_criterion} pts)"})
+                        tests.append({"name": "CODE Section", "status": "pass", "score": points_per_criterion, "message": f"CODE has content ({points_per_criterion} pts)"})
                     else:
                         partial = points_per_criterion // 2
                         score += partial
-                        tests.append({"name": "CODE Section", "status": "fail", "score": partial, "message": f"⚠ CODE too short ({partial} pts)"})
+                        tests.append({"name": "CODE Section", "status": "fail", "score": partial, "message": f"CODE too short ({partial} pts)"})
                 else:
-                    tests.append({"name": "CODE Section", "status": "fail", "score": 0, "message": "✗ CODE not found (0 pts)"})
+                    tests.append({"name": "CODE Section", "status": "fail", "score": 0, "message": "CODE not found (0 pts)"})
                 
                 # EXPLANATION criterion
                 if "EXPLANATION:" in content:
@@ -359,15 +359,15 @@ jobs:
                     
                     if len(explanation) >= 50:
                         score += points_per_criterion
-                        tests.append({"name": "EXPLANATION", "status": "pass", "score": points_per_criterion, "message": f"✓ {len(explanation)} chars ≥50 ({points_per_criterion} pts)"})
+                        tests.append({"name": "EXPLANATION", "status": "pass", "score": points_per_criterion, "message": f"{len(explanation)} chars >=50 ({points_per_criterion} pts)"})
                     elif len(explanation) >= 20:
                         partial = points_per_criterion // 2
                         score += partial
-                        tests.append({"name": "EXPLANATION", "status": "fail", "score": partial, "message": f"⚠ {len(explanation)} chars <50 ({partial} pts)"})
+                        tests.append({"name": "EXPLANATION", "status": "fail", "score": partial, "message": f"{len(explanation)} chars <50 ({partial} pts)"})
                     else:
-                        tests.append({"name": "EXPLANATION", "status": "fail", "score": 0, "message": f"✗ Too short: {len(explanation)} chars (0 pts)"})
+                        tests.append({"name": "EXPLANATION", "status": "fail", "score": 0, "message": f"Too short: {len(explanation)} chars (0 pts)"})
                 else:
-                    tests.append({"name": "EXPLANATION", "status": "fail", "score": 0, "message": "✗ EXPLANATION not found (0 pts)"})
+                    tests.append({"name": "EXPLANATION", "status": "fail", "score": 0, "message": "EXPLANATION not found (0 pts)"})
                 
                 status = "pass" if score == max_score else "fail"
                 result = {"version": 1, "status": status, "max_score": max_score, "tests": tests}
